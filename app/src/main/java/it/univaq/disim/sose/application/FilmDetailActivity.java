@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,11 +20,10 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import it.univaq.disim.sose.application.adapters.ResultAdapter;
 import it.univaq.disim.sose.application.adapters.ReviewAdapter;
 import it.univaq.disim.sose.application.models.FilmDetail;
 import it.univaq.disim.sose.application.models.RatingData;
@@ -37,6 +36,7 @@ public class FilmDetailActivity extends Activity {
     private ImageView imageView;
     private TextView titleView,descriptionView,filmRatings;
     private ListView listView;
+    private ImageButton editButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,6 +72,20 @@ public class FilmDetailActivity extends Activity {
         ReviewAdapter reviewAdapter = new ReviewAdapter(this,R.layout.review_row,filmDetail.getReviews());
         listView.setAdapter(reviewAdapter);
 
+        editButton = findViewById(R.id.buttonNewReview);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Da cambiare
+                userID = "1";
+                //
+                Intent intent = new Intent(FilmDetailActivity.this, ReviewActivity.class);
+                intent.putExtra("user_id", userID);
+                intent.putExtra("film_id",filmDetail.getId());
+                intent.putExtra("film_title",filmDetail.getTitle());
+                startActivity(intent);
+            }
+        });
 
     }
 
