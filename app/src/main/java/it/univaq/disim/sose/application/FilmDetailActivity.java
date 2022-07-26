@@ -22,6 +22,7 @@ import org.ksoap2.transport.HttpTransportSE;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.WeakHashMap;
 import java.util.concurrent.ExecutionException;
 
 import it.univaq.disim.sose.application.adapters.ReviewAdapter;
@@ -37,6 +38,7 @@ public class FilmDetailActivity extends Activity {
     private TextView titleView,descriptionView,filmRatings;
     private ListView listView;
     private ImageButton editButton;
+    private ImageButton home;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,12 +74,21 @@ public class FilmDetailActivity extends Activity {
         ReviewAdapter reviewAdapter = new ReviewAdapter(this,R.layout.review_row,filmDetail.getReviews());
         listView.setAdapter(reviewAdapter);
 
+        home = findViewById(R.id.home_filmdetail);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FilmDetailActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
         editButton = findViewById(R.id.buttonNewReview);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Da cambiare
-                userID = "1";
+                userID = "200";
                 //
                 Intent intent = new Intent(FilmDetailActivity.this, ReviewActivity.class);
                 intent.putExtra("user_id", userID);

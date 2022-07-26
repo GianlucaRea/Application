@@ -8,6 +8,43 @@
     android:background="#647AF3">
 
     <ImageButton
+        android:id="@+id/home_filmdetail"
+        android:layout_width="68dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="289dp"
+        android:layout_marginBottom="579dp"
+        android:backgroundTint="#647AF3"
+        android:scaleType="centerInside"
+        android:src="?android:attr/actionModeWebSearchDrawable"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="108dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="126dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginBottom="587dp"
+        android:fontFamily="@font/dr_sugiyama"
+        android:text="SOSE"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
         android:id="@+id/imageButton3"
         android:layout_width="65dp"
         android:layout_height="50dp"
@@ -19,20 +56,6 @@
         android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="144dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/dr_sugiyama"
-        android:text="SOSE"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="48sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="358dp"
@@ -83,6 +106,7 @@
             <TextView
                 android:id="@+id/filmDescription"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Description"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
@@ -90,53 +114,54 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_height="wrap_content"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textPlaceholder1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:text="Ratings"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
                 android:textColor="@color/white"
-                android:text="Ratings"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
-                android:textColor="@color/white"
-                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
                 android:id="@+id/filmRatings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Ratings"
+                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/textPlaceholder2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:text="Reviews"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-                android:textColor="@color/white"
-                android:text="Reviews"
-               />
+                android:textColor="@color/white" />
 
 
             <ListView
                 android:id="@+id/listViewReviews"
-                android:layout_width="318dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="6000dp"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="1dp"
+                android:scrollbarSize="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -151,12 +176,10 @@
         android:layout_width="63dp"
         android:layout_height="51dp"
         android:layout_gravity="center"
-        android:layout_marginStart="196dp"
-        android:layout_marginBottom="580dp"
         android:background="#647AF3"
         android:scaleType="fitCenter"
         android:src="@android:drawable/ic_menu_edit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="296dp"
+        tools:layout_editor_absoluteY="14dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
