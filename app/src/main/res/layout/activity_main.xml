@@ -52,11 +52,11 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton7"
+        android:id="@+id/toLogin"
         android:layout_width="65dp"
         android:layout_height="50dp"
-        android:layout_marginStart="284dp"
-        android:layout_marginBottom="566dp"
+        android:layout_marginStart="292dp"
+        android:layout_marginBottom="580dp"
         android:background="#647AF3"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_launcher_foreground"

@@ -34,7 +34,7 @@ import it.univaq.disim.sose.application.models.Result;
 import it.univaq.disim.sose.application.models.Review;
 
 public class ReviewActivity extends Activity {
-    private String TAG ="SOAPClient", user_id,film_id,film_title,result;
+    private String TAG ="SOAPClient", user_id,film_id,film_title,result,userToken;
     private TextView reviewFilmTitle,reviewTextTitle,reviewTextComment;
     private EditText editTextActor, editTextDialogue, editTextCostume,editTextDirector ,editTextGlobalScore;
     private Button addReview;
@@ -44,10 +44,17 @@ public class ReviewActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         setContentView(R.layout.add_review);
         Intent intent = getIntent();
-        user_id = intent.getStringExtra("user_id");
-        user_id = "992"; //TODO togliere
+        userToken = intent.getStringExtra("userToken");
+        user_id = intent.getStringExtra("userID");
+
+
+        if(userToken == null || user_id == null){
+            Intent intentBlock = new Intent(ReviewActivity.this,MainActivity.class);
+            startActivity(intentBlock);
+        }
         film_id = intent.getStringExtra("film_id");
         film_title = intent.getStringExtra("film_title");
 
@@ -66,11 +73,14 @@ public class ReviewActivity extends Activity {
         editTextDialogue.setText("0");
         editTextCostume.setText("0");
         editTextDirector.setText("0");
+        editTextGlobalScore.setText("0");
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ReviewActivity.this,MainActivity.class);
+                intent.putExtra("userToken",userToken);
+                intent.putExtra("userID", user_id);
                 startActivity(intent);            }
         });
 
@@ -171,6 +181,8 @@ public class ReviewActivity extends Activity {
     public void openFilmDetails(String film_id){
         Intent intent = new Intent(this, FilmDetailActivity.class);
         intent.putExtra("film_id", film_id);
+        intent.putExtra("userToken",userToken);
+        intent.putExtra("userID", user_id);
         startActivity(intent);
     }
 

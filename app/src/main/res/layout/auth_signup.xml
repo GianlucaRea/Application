@@ -64,30 +64,14 @@
         app:layout_constraintVertical_bias="0.857" />
 
     <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="174dp"
-        android:layout_marginEnd="282dp"
-        android:layout_marginBottom="433dp"
-        android:text="Email"
-        android:textColor="@color/white"
-        android:textSize="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="174dp"
-        android:layout_marginEnd="282dp"
-        android:layout_marginBottom="433dp"
-        android:text="Email"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="176dp"
+        android:layout_marginEnd="234dp"
+        android:layout_marginBottom="431dp"
+        android:text="Username"
         android:textColor="@color/white"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -112,7 +96,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="127dp"
@@ -128,7 +112,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/loginPassword"
+        android:id="@+id/signupPassword"
         android:layout_width="322dp"
         android:layout_height="45dp"
         android:layout_marginStart="18dp"
@@ -144,16 +128,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/loginEmail"
+        android:id="@+id/signupUsername"
         android:layout_width="321dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="209dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginBottom="381dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="210dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="387dp"
         android:background="@color/white"
         android:ems="10"
-        android:inputType="textEmailAddress"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

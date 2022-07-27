@@ -7,6 +7,7 @@ import org.ksoap2.transport.HttpTransportSE;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import java.io.Serializable;
@@ -25,16 +27,21 @@ import it.univaq.disim.sose.application.models.Result;
 
 public class MainActivity extends Activity {
 
-    private String TAG ="SOAPClient";
+    private String TAG ="SOAPClient",userToken,userID;
     private List <Result> results = new ArrayList<Result>();
     private EditText editText;
     private Button btnClickHere;
+    private ImageButton toLogin;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        userToken = intent.getStringExtra("userToken");
+        userID = intent.getStringExtra("userID");
 
         //Choice Box Implementation
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -46,6 +53,19 @@ public class MainActivity extends Activity {
         // Input for search
         editText = (EditText)findViewById(R.id.SearchID);
         btnClickHere = (Button)findViewById(R.id.buttonSearch);
+        toLogin = findViewById(R.id.toLogin);
+
+        toLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    if(userToken == null ){
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    } else {
+                        Log.i("LOGIN","Alredy Logged in");
+                    }
+            }
+        });
 
         btnClickHere.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +73,7 @@ public class MainActivity extends Activity {
                 String spinnerChoice = spinner.getSelectedItem().toString();
                 String searchText = editText.getText().toString();
                 AsyncCallWS task = new AsyncCallWS();
-                task.execute(searchText,spinnerChoice);
+                task.execute(searchText,spinnerChoice,userToken,userID);
             }
         });
     }
@@ -65,19 +85,19 @@ public class MainActivity extends Activity {
             switch (params[1]){
                 case "Movies":
                     results = searchFilms(params[0]);
-                    openFilmActivity(results);
+                    openFilmActivity(results,params[2],params[3]);
                     break;
                 case "Tv Shows":
                     results = searchSeries(params[0]);
-                    openFilmActivity(results);
+                    openFilmActivity(results,params[2],params[3]);
                     break;
                 case "Episodes":
                     results = searchEpisodes(params[0]);
-                    openFilmActivity(results);
+                    openFilmActivity(results,params[2],params[3]);
                 case "All":
                 default:
                     results = searchAll(params[0]);
-                    openFilmActivity(results);
+                    openFilmActivity(results,params[2],params[3]);
             }
 
             return null;
@@ -228,9 +248,11 @@ public class MainActivity extends Activity {
         return results;
     }
 
-    public void openFilmActivity(List <Result> results){
+    public void openFilmActivity(List <Result> results,String userToken,String userID){
         Intent intent = new Intent(this, FilmSearchActivity.class);
         intent.putExtra("key", (Serializable) results);
+        intent.putExtra("userToken",userToken);
+        intent.putExtra("userID",userID);
         startActivity(intent);
     }
 

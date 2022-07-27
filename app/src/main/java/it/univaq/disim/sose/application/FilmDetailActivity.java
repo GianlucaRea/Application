@@ -32,13 +32,13 @@ import it.univaq.disim.sose.application.models.Review;
 
 public class FilmDetailActivity extends Activity {
 
-    private String TAG ="SOAPClient",searchText,filmID,userID,title,comment;
+    private String TAG ="SOAPClient",searchText,filmID,userID,title,comment,userToken;
     private FilmDetail filmDetail;
     private ImageView imageView;
     private TextView titleView,descriptionView,filmRatings;
     private ListView listView;
     private ImageButton editButton;
-    private ImageButton home;
+    private ImageButton home , toLoginFD;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,8 +47,11 @@ public class FilmDetailActivity extends Activity {
         setContentView(R.layout.film_detail);
         Intent intent = getIntent();
         searchText = intent.getStringExtra("film_id");
-       //TODO Da eliminare questa è quella di lost con recensioni
-        searchText = "tt0411008";
+        userToken = intent.getStringExtra("userToken");
+        userID = intent.getStringExtra("userID");
+
+
+
         AsyncCallWS task = new AsyncCallWS();
         try {
             filmDetail = task.execute(searchText).get();
@@ -70,15 +73,31 @@ public class FilmDetailActivity extends Activity {
         filmRatings = findViewById(R.id.filmRatings);
         filmRatings.setText(filmDetail.getRatings().toString());
 
+
         listView=findViewById(R.id.listViewReviews);
         ReviewAdapter reviewAdapter = new ReviewAdapter(this,R.layout.review_row,filmDetail.getReviews());
         listView.setAdapter(reviewAdapter);
+
+        toLoginFD = findViewById(R.id.toLoginFD);
+        toLoginFD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(userToken == null ){
+                    Intent intent = new Intent(FilmDetailActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    Log.i("LOGIN","Alredy Logged in");
+                }
+            }
+        });
 
         home = findViewById(R.id.home_filmdetail);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FilmDetailActivity.this,MainActivity.class);
+                intent.putExtra("userToken",userToken);
+                intent.putExtra("userID",userID);
                 startActivity(intent);
             }
         });
@@ -87,14 +106,14 @@ public class FilmDetailActivity extends Activity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Da cambiare
-                userID = "200";
-                //
+                if (userToken != null){
                 Intent intent = new Intent(FilmDetailActivity.this, ReviewActivity.class);
-                intent.putExtra("user_id", userID);
+                intent.putExtra("userID", userID);
                 intent.putExtra("film_id",filmDetail.getId());
                 intent.putExtra("film_title",filmDetail.getTitle());
+                intent.putExtra("userToken", userToken);
                 startActivity(intent);
+                }
             }
         });
 

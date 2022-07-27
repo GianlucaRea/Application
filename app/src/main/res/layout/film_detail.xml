@@ -8,6 +8,23 @@
     android:background="#647AF3">
 
     <ImageButton
+        android:id="@+id/toLoginFD"
+        android:layout_width="65dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="292dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="580dp"
+        android:background="#647AF3"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_launcher_foreground"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
         android:id="@+id/home_filmdetail"
         android:layout_width="68dp"
         android:layout_height="44dp"
@@ -43,19 +60,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="65dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="268dp"
-        android:layout_marginBottom="580dp"
-        android:background="#647AF3"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_launcher_foreground"
-        android:tint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
         android:layout_width="358dp"
@@ -173,13 +177,19 @@
 
     <ImageButton
         android:id="@+id/buttonNewReview"
-        android:layout_width="63dp"
-        android:layout_height="51dp"
+        android:layout_width="51dp"
+        android:layout_height="45dp"
         android:layout_gravity="center"
+        android:layout_marginStart="241dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="585dp"
         android:background="#647AF3"
         android:scaleType="fitCenter"
         android:src="@android:drawable/ic_menu_edit"
-        tools:layout_editor_absoluteX="296dp"
-        tools:layout_editor_absoluteY="14dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
