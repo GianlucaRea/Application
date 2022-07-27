@@ -62,8 +62,7 @@ public class FilmDetailActivity extends Activity {
         }
 
         imageView=findViewById(R.id.filmImage);
-        Picasso.with(FilmDetailActivity.this)
-                .load(filmDetail.getImageLink())
+        Picasso.with(FilmDetailActivity.this).load(filmDetail.getImageLink())
                 .into(imageView);
 
         titleView = findViewById(R.id.filmTitle);
@@ -71,7 +70,11 @@ public class FilmDetailActivity extends Activity {
         descriptionView = findViewById(R.id.filmDescription);
         descriptionView.setText(filmDetail.descriptionForDetails());
         filmRatings = findViewById(R.id.filmRatings);
-        filmRatings.setText(filmDetail.getRatings().toString());
+        if (filmDetail.getRatings().equals(null)){
+            filmRatings.setText("No ratings yet");
+        }else {
+            filmRatings.setText(filmDetail.getRatings().toString());
+        }
 
 
         listView=findViewById(R.id.listViewReviews);
@@ -157,6 +160,7 @@ public class FilmDetailActivity extends Activity {
             soapEnvelope.dotNet = false;
             soapEnvelope.setOutputSoapObject(Request);
             HttpTransportSE transport= new HttpTransportSE(WSDL_URL);
+            RatingData rating = new RatingData();
 
             Log.i(TAG, "Invoking the " + METHOD_NAME + "operation");
             Log.i(TAG, "Sending message '" + message + "'");
@@ -165,7 +169,10 @@ public class FilmDetailActivity extends Activity {
             // Soap Object init
             SoapObject filmsDetailsSoap= (SoapObject) soapEnvelope.getResponse();
             // Film Rating init
-            RatingData rating = new RatingData( (SoapObject) filmsDetailsSoap.getProperty("ratings"));
+
+            if(filmsDetailsSoap.hasProperty("ratings")) {
+                rating = new RatingData((SoapObject) filmsDetailsSoap.getProperty("ratings"));
+            }
             // Film Review List Inizialization
             ArrayList<Review> reviewList = new ArrayList<Review>();
             for(int i = 0; i < filmsDetailsSoap.getPropertyCount(); i++){
@@ -182,7 +189,7 @@ public class FilmDetailActivity extends Activity {
             }
 
             //filmDetail Creation
-            filmDetail = new FilmDetail(filmsDetailsSoap,reviewList,rating);
+                filmDetail = new FilmDetail(filmsDetailsSoap, reviewList, rating);
 
 
             return filmDetail;
