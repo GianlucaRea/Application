@@ -35,7 +35,7 @@ public class FilmDetailActivity extends Activity {
     private String TAG ="SOAPClient",searchText,filmID,userID,title,comment,userToken;
     private FilmDetail filmDetail;
     private ImageView imageView;
-    private TextView titleView,descriptionView,filmRatings;
+    private TextView titleView,descriptionView,filmRatings,globalScore;
     private ListView listView;
     private ImageButton editButton;
     private ImageButton home , toLoginFD;
@@ -70,10 +70,13 @@ public class FilmDetailActivity extends Activity {
         descriptionView = findViewById(R.id.filmDescription);
         descriptionView.setText(filmDetail.descriptionForDetails());
         filmRatings = findViewById(R.id.filmRatings);
+        globalScore = findViewById(R.id.globalScore);
+
         if (filmDetail.getRatings().equals(null)){
             filmRatings.setText("No ratings yet");
         }else {
             filmRatings.setText(filmDetail.getRatings().toString());
+            globalScore.setText(filmDetail.getRatings().globalScoreText());
         }
 
 
